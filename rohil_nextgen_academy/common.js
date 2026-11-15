@@ -87,3 +87,70 @@
     addEmiFaq();
   }
 })();
+
+// Free Demo form → WhatsApp
+(function () {
+  var form = document.getElementById("enquiryForm");
+  if (!form) return;
+
+  var WHATSAPP_NUMBER = "919751867879"; // 91 + 10 digits, no + or spaces
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var name = document.getElementById("enqName").value.trim();
+    var email = document.getElementById("enqEmail").value.trim();
+    var degree = document.getElementById("enqDegree").value.trim();
+    var duration = document.getElementById("enqDuration").value;
+    var course = document.getElementById("enqCourse").value;
+    var phone = document.getElementById("enqPhone").value.trim();
+    var altPhone = document.getElementById("enqAltPhone").value.trim();
+    var notice = document.getElementById("enqNotice");
+
+    function show(text, type) {
+      notice.textContent = text;
+      notice.className = "enquiry-notice " + type;
+    }
+
+    if (!name || !email || !degree || !duration || !course || !phone) {
+      show("Please fill in all required fields.", "error");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      show("Please enter a valid email address.", "error");
+      return;
+    }
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+      show("Please enter a valid 10-digit mobile number.", "error");
+      return;
+    }
+    if (altPhone && !/^[6-9]\d{9}$/.test(altPhone)) {
+      show("Please enter a valid alternate phone number.", "error");
+      return;
+    }
+
+    var message =
+      "Hello Rohil NextGen, I would like to book a Free Demo Class.\n\n" +
+      "Name: " + name + "\n" +
+      "Email: " + email + "\n" +
+      "Degree: " + degree + "\n" +
+      "Course: " + course + "\n" +
+      "Duration: " + duration + "\n" +
+      "Phone: " + phone + "\n" +
+      "Alternate Phone: " + (altPhone || "-");
+
+    var url =
+      "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+
+    var win = window.open(url, "_blank");
+    if (!win) {
+      window.location.href = url; // popup blocked → open in same tab
+    }
+
+    show("Opening WhatsApp. Please tap Send to share your details.", "success");
+    form.reset();
+    setTimeout(function () {
+      notice.className = "enquiry-notice";
+    }, 6000);
+  });
+})();

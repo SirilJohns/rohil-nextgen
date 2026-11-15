@@ -944,99 +944,210 @@
           justify-content: center;
         }
       }
+/* 50% content / 50% form, no media query */
+.overview-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+}
 
-      /* ===== Learn Your Way (below image, separate) ===== */
-      .overview-right {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-      }
+.overview-content {
+  flex: 1 1 calc(50% - 20px);
+  min-width: 420px;
+  box-sizing: border-box;
+}
 
-      .course-modes {
-        width: 100%;
-        text-align: left;
-        padding: 0 30px;
-        margin-top: 20px; /* image-oda same margin */
-        box-sizing: border-box;
-        background: none;
-        box-shadow: none;
-      }
+.overview-right {
+  flex: 1 1 calc(50% - 20px);
+  min-width: 380px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
 
-      .modes-title {
-        font-size: 1.5rem;
-        color: var(--primary-red);
-        margin-bottom: 15px;
-      }
+.enquiry-card {
+  background: var(--white);
+  border-radius: 14px;
+  border-top: 5px solid var(--primary-red);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 30px;
+  box-sizing: border-box;
+  /* form narrower from the left, right edge fixed (0 to 60px, auto by screen width) */
+  margin-left: 10px;
+}
 
-      .mode-item {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        padding: 18px 0;
-        border-bottom: 1px solid #eee;
-      }
+.enquiry-title {
+  font-size: 1.6rem;
+  color: var(--primary-red);
+  margin-bottom: 6px;
+}
 
-      .mode-item:last-child {
-        border-bottom: none;
-      }
+.enquiry-sub {
+  color: var(--medium-gray);
+  font-size: 0.95rem;
+  margin-bottom: 22px;
+}
 
-      .mode-icon {
-        flex: 0 0 46px;
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        background: var(--primary-red);
-        color: #fff;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+.enquiry-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
 
-      .mode-text h3 {
-        margin: 0 0 3px;
-        font-size: 1.15rem;
-        color: #222;
-      }
+.enquiry-field {
+  margin-bottom: 16px;
+}
 
-      .mode-text p {
-        margin: 0;
-        font-size: 1rem;
-        color: #555;
-        line-height: 1.4;
-      }
+.enquiry-field label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--dark-gray);
+}
 
-      @media (max-width: 768px) {
-        .overview-right {
-          width: 100%;
-          align-items: center;
-          padding: 0;
-          margin: 0;
-        }
+.enquiry-field input,
+.enquiry-field select {
+  width: 100%;
+  padding: 11px 13px;
+  border: 2px solid #e3e3e3;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: Georgia;
+  background: #fff;
+  color: var(--dark-gray);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
 
-        .overview-image {
-          width: 100%;
-          max-width: 100%;
-          margin: 0 auto !important;
-          padding: 0 !important;
-          transform: none !important;
-        }
+.enquiry-field input::placeholder {
+  color: #aaa;
+}
 
-        .overview-image img {
-          width: 100%;
-          max-width: 100%;
-          height: auto;
-          display: block;
-          margin: 0 auto;
-        }
+.enquiry-field input:focus,
+.enquiry-field select:focus {
+  border-color: var(--primary-red);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 4, 4, 0.15);
+}
 
-        .course-modes {
-          width: 100%;
-          max-width: 100%;
-          margin: 0 auto;
-          padding: 0;
-        }
-      }
+.enquiry-btn {
+  width: 100%;
+  background: var(--primary-red);
+  color: #fff;
+  border: none;
+  padding: 13px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Georgia;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.enquiry-btn i {
+  font-size: 1.2rem;
+}
+
+.enquiry-btn:hover:not(:disabled) {
+  background: var(--dark-red);
+  transform: translateY(-2px);
+}
+
+.enquiry-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.enquiry-notice {
+  display: none;
+  margin-top: 14px;
+  padding: 11px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.92rem;
+}
+
+.enquiry-notice.success {
+  display: block;
+  background: rgba(46, 204, 113, 0.15);
+  color: #1e8449;
+  border: 1px solid #2ecc71;
+}
+
+.enquiry-notice.error {
+  display: block;
+  background: rgba(231, 76, 60, 0.12);
+  color: #c0392b;
+  border: 1px solid #e74c3c;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .overview-right {
+    width: 100%;
+  }
+}
+
+/* Roomier form to balance the left content height */
+.enquiry-card {
+  padding: 40px 36px;
+}
+
+.enquiry-title {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.enquiry-sub {
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.enquiry-row {
+  gap: 18px;
+}
+
+.enquiry-field {
+  margin-bottom: 24px;
+}
+
+.enquiry-field label {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.enquiry-field input,
+.enquiry-field select {
+  padding: 14px 15px;
+  font-size: 1rem;
+}
+
+.enquiry-btn {
+  padding: 16px;
+  font-size: 1.05rem;
+  margin-top: 6px;
+}
+
+@media (max-width: 576px) {
+  .enquiry-card {
+    padding: 22px 18px;
+  }
+
+  .enquiry-title {
+    font-size: 1.4rem;
+  }
+
+  .enquiry-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
       /* Newsletter Subscription Styles */
       .newsletter-section {
         background: linear-gradient(
@@ -1677,6 +1788,110 @@
           flex: 1;
         }
       }
+
+      /* Reduce gap between heading and content */
+.overview-content .section-title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.overview-content .highlight-box {
+  margin-top: 25px;
+}
+
+.overview-content {
+  flex: 1 1 calc(50% - 20px);
+  min-width: min(420px, 100%);   /* 420px-ku mela pogaadhu, screen kammiya irundha 100% */
+  box-sizing: border-box;
+}
+
+.overview-right {
+  flex: 1 1 calc(50% - 20px);
+  min-width: min(380px, 100%);   /* same */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Course logos in trending courses */
+.course-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .course-logo { width: 62px; height: 62px; }
+}
+
+@media (max-width: 480px) {
+  .course-logo { width: 52px; height: 52px; }
+}
+
+/* Reduce space below the overview section */
+.overview-section {
+  padding-bottom: 30px;
+}
+
+.overview-content .highlight-box {
+  margin-bottom: 0;
+}
+
+/* ===== Learning Modes (Online / Offline / Remote) ===== */
+.modes-section {
+  padding: 40px 20px 40px;
+  background: var(--white);
+}
+
+.modes-cards {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+}
+
+.mode-card {
+  background: var(--white);
+  border-radius: 14px;
+  border-top: 4px solid var(--primary-red);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 32px 26px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mode-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(212, 4, 4, 0.18);
+}
+
+.mode-card-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--primary-red);
+  color: #fff;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mode-card h3 {
+  font-size: 1.25rem;
+  color: var(--dark-gray);
+  margin-bottom: 10px;
+}
+
+.mode-card p {
+  color: var(--medium-gray);
+  line-height: 1.6;
+  font-size: 0.98rem;
+  margin: 0;
+}
+
     </style>
     <!-- Meta Pixel Code -->
 <script>
@@ -1855,7 +2070,15 @@ src="https://www.facebook.com/tr?id=2068205667229556&ev=PageView&noscript=1"
           <strong>6-Month Courses</strong>
           <span>with Placement Guarantee</span>
         </div>
-        <a href="contact.html" class="placement-badge-btn">Enquire</a>
+       <a
+          href="https://wa.me/918610395549"
+          class="placement-badge-btn"
+          target="_blank"
+          rel="noopener"
+          aria-label="Enquire on WhatsApp"
+        >
+          <i class="fab fa-whatsapp"></i> Enquire
+        </a>
       </div>
 
       <div class="carousel-controls">
@@ -1917,63 +2140,79 @@ src="https://www.facebook.com/tr?id=2068205667229556&ev=PageView&noscript=1"
             </div>
           </div>
 
-          <!-- Right column: image + modes (separate) -->
-          <div class="overview-right">
-            <div class="overview-image">
-              <img
-                src="./images/overview.jpg"
-                alt="Rohil NextGen Training Institute in Virudhunagar - Students learning software development in classroom"
-                width="600"
-                height="400"
-                loading="lazy"
-              />
-            </div>
+          <!-- Right column: Free Demo form -->
+<div class="overview-right">
+  <div class="enquiry-card">
+    <h2 class="enquiry-title">Book Your Free Demo Class</h2>
+    <p class="enquiry-sub">Share your details and we will connect with you on WhatsApp.</p>
 
-            <div class="course-modes">
-              <h2 class="modes-title">Learn Your Way</h2>
+    <form id="enquiryForm" novalidate>
+      <div class="enquiry-row">
+        <div class="enquiry-field">
+          <label for="enqName">Name</label>
+          <input type="text" id="enqName" placeholder="Enter your name" required />
+        </div>
+        <div class="enquiry-field">
+          <label for="enqEmail">Email</label>
+          <input type="email" id="enqEmail" placeholder="Enter your email" required />
+        </div>
+      </div>
 
-              <div class="mode-item">
-                <div class="mode-icon"><i class="fa-solid fa-laptop"></i></div>
-                <div class="mode-text">
-                  <h3>Online Courses</h3>
-                  <p>
-                    Interactive live sessions from anywhere with hands-on
-                    practice.
-                  </p>
-                </div>
-              </div>
+      <div class="enquiry-row">
+        <div class="enquiry-field">
+          <label for="enqDegree">Degree</label>
+          <input type="text" id="enqDegree" placeholder="Eg: BE, B.Tech, Bsc " required />
+        </div>
+        <div class="enquiry-field">
+          <label for="enqDuration">Duration</label>
+          <select id="enqDuration" required>
+            <option value="" disabled selected>Select duration</option>
+            <option>1 Month</option>
+            <option>3 Months</option>
+            <option>6 Months</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
 
-              <div class="mode-item">
-                <div class="mode-icon">
-                  <i class="fa-solid fa-building-columns"></i>
-                </div>
-                <div class="mode-text">
-                  <h3>Offline Courses</h3>
-                  <p>
-                    In-person classroom training with hands-on labs and expert
-                    mentors.
-                  </p>
-                </div>
-              </div>
+      <div class="enquiry-field">
+        <label for="enqCourse">Course</label>
+        <select id="enqCourse" required>
+          <option value="" disabled selected>Select a course</option>
+          <option>Python</option>
+          <option>Java</option>
+          <option>Full Stack Development</option>
+          <option>Data Science</option>
+          <option>Data Analytics</option>
+          <option>AI / Machine Learning</option>
+          <option>Software Testing</option>
+          <option>Digital Marketing</option>
+          <option>Cloud / DevOps</option>
+          <option>Other</option>
+        </select>
+      </div>
 
-              <div class="mode-item">
-                <div class="mode-icon">
-                  <i class="fa-solid fa-house-laptop"></i>
-                </div>
-                <div class="mode-text">
-                  <h3>Remote Courses</h3>
-                  <p>
-                    Learn from anywhere with flexible timings and trainer
-                    support.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="enquiry-row">
+        <div class="enquiry-field">
+          <label for="enqPhone">Phone Number</label>
+          <input type="tel" id="enqPhone" placeholder="10-digit mobile number" maxlength="10" required />
+        </div>
+        <div class="enquiry-field">
+          <label for="enqAltPhone">Alternate Phone Number</label>
+          <input type="tel" id="enqAltPhone" placeholder="Enter alternate phone number" maxlength="10" />
+        </div>
+      </div>
+
+      <button type="submit" class="enquiry-btn" id="enqBtn">
+        <i class="fab fa-whatsapp"></i> Book Free Demo
+      </button>
+      <div id="enqNotice" class="enquiry-notice"></div>
+    </form>
+  </div>
+</div>
         </div>
       </div>
     </section>
-
     <!-- UPDATED: Trending Courses Section - USING H2 -->
     <section class="trending-courses-section">
       <div class="trending-courses-container">
@@ -2469,6 +2708,37 @@ src="https://www.facebook.com/tr?id=2068205667229556&ev=PageView&noscript=1"
           <div class="trending-dots-container" id="trendingDots">
             <!-- Dots will be generated by JavaScript -->
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="modes-section">
+      <div class="section-title">
+        <h2>Learn Your Way</h2>
+        <p>Choose the mode that fits your schedule and lifestyle.</p>
+      </div>
+
+      <div class="modes-cards">
+        <div class="mode-card">
+          <div class="mode-card-icon"><i class="fa-solid fa-laptop"></i></div>
+          <h3>Online Courses</h3>
+          <p>Interactive live sessions from anywhere with hands-on practice.</p>
+        </div>
+
+        <div class="mode-card">
+          <div class="mode-card-icon">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <h3>Offline Courses</h3>
+          <p>In-person classroom training with hands-on labs and expert mentors.</p>
+        </div>
+
+        <div class="mode-card">
+          <div class="mode-card-icon">
+            <i class="fa-solid fa-house-laptop"></i>
+          </div>
+          <h3>Remote Courses</h3>
+          <p>Learn from anywhere with flexible timings and trainer support.</p>
         </div>
       </div>
     </section>
@@ -4683,6 +4953,87 @@ src="https://www.facebook.com/tr?id=2068205667229556&ev=PageView&noscript=1"
 
         startAutoSlide();
       });
+      // Replace trending course icons with real logos
+(function () {
+  var base = "./logos/course-logos/";
+
+  // course name (as shown on card) -> logo file
+  // For your own logo, use a path like "./logos/odoo.png"
+  var logos = {
+    "UX & AI": "figma/figma-original.svg",
+    "Software Testing": "selenium/selenium-original.svg",
+    "Data Science": "./logos/course-logos/data-science.png",
+    "Data Analytics": "./logos/course-logos/data-analytics.png",
+    "LUA Scripting": "lua/lua-original.svg",
+    "Python": "python/python-original.svg",
+    "Java": "java/java-original.svg",
+    "JavaScript": "javascript/javascript-original.svg",
+    "AI/ML": "tensorflow/tensorflow-original.svg",
+    "React": "react/react-original.svg",
+    "Angular": "angular/angular-original.svg",
+    "Vue.js": "vuejs/vuejs-original.svg",
+    "Node.js": "nodejs/nodejs-original.svg",
+    "Docker": "docker/docker-original.svg",
+    "Kubernetes": "kubernetes/kubernetes-original.svg",
+    "AWS": "amazonwebservices/amazonwebservices-original.svg",
+    "Azure": "azure/azure-original.svg",
+    "Cybersecurity": "./logos/course-logos/cybersecurity.png",
+    "Blockchain": "solidity/solidity-original.svg",
+    "Flutter": "flutter/flutter-original.svg",
+    "Swift": "swift/swift-original.svg",
+    "Kotlin": "kotlin/kotlin-original.svg",
+    "DevOps": "./logos/course-logos/devops.png",
+    "Embedded Systems": "arduino/arduino-original.svg",
+    "Internet of Things": "./logos/course-logos/iot.png",
+    "Video Editing": "premierepro/premierepro-original.svg",
+    "VLSI Design": "./logos/course-logos/vlsi.png",
+    "AutoCAD": "./logos/course-logos/autocad.png",
+    "Digital Marketing": "./logos/course-logos/digital-marketing.png",
+    "ODOO ERP": "./logos/course-logos/odoo.png"
+  };
+
+  function applyLogos() {
+    // Size for the logos (injected here, so no extra CSS needed)
+    if (!document.getElementById("course-logo-style")) {
+      var style = document.createElement("style");
+      style.id = "course-logo-style";
+      style.textContent =
+        ".course-logo{width:72px;height:72px;object-fit:contain}" +
+        "@media(max-width:768px){.course-logo{width:62px;height:62px}}" +
+        "@media(max-width:480px){.course-logo{width:52px;height:52px}}";
+      document.head.appendChild(style);
+    }
+
+    document.querySelectorAll(".trending-course-item").forEach(function (item) {
+      var nameEl = item.querySelector(".course-name");
+      var box = item.querySelector(".course-icon-container");
+      if (!nameEl || !box) return;
+
+      var name = nameEl.textContent.trim();
+      var file = logos[name];
+      if (!file) return; // no logo for this course, keep the icon
+
+      var src = /^(\.|https?:)/.test(file) ? file : base + file;
+      var original = box.innerHTML;
+
+      var img = document.createElement("img");
+      img.src = src;
+      img.alt = name + " logo";
+      img.className = "course-logo";
+      img.loading = "lazy";
+      img.onerror = function () { box.innerHTML = original; }; // fallback to icon
+
+      box.innerHTML = "";
+      box.appendChild(img);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyLogos);
+  } else {
+    applyLogos();
+  }
+})();
     </script>
     <script src="./script.js"></script>
     <script src="./common.js"></script>
