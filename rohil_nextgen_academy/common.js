@@ -1,33 +1,34 @@
 (function () {
   // ===== Edit questions and answers here (updates on all pages) =====
   var heading = "Fees & EMI: Your Questions Answered";
-  var subheading = "Everything you need to know about paying your course fee in installments.";
+  var subheading =
+    "Everything you need to know about paying your course fee in installments.";
 
   var faqs = [
     {
       q: "Is EMI available for Rohil NextGen courses?",
-      a: "Yes, you can pay your course fee in monthly installments. Our admission team will help you choose a plan that fits your budget."
+      a: "Yes, you can pay your course fee in monthly installments. Our admission team will help you choose a plan that fits your budget.",
     },
     {
       q: "Which courses can I join with EMI?",
-      a: "EMI is available for our course programs. Please confirm the course you want with our admission team, as plans may differ by course."
+      a: "EMI is available for our course programs. Please confirm the course you want with our admission team, as plans may differ by course.",
     },
     {
       q: "How many months can I pay in?",
-      a: "Flexible repayment periods are available. Contact us to know the options for your course."
+      a: "Flexible repayment periods are available. Contact us to know the options for your course.",
     },
     {
       q: "Do I need to pay anything at the time of joining?",
-      a: "An initial payment confirms your seat in the batch. The exact amount is shared by our admission team when you enquire."
+      a: "An initial payment confirms your seat in the batch. The exact amount is shared by our admission team when you enquire.",
     },
     {
       q: "What documents are required?",
-      a: "Our team will tell you the exact documents when you enquire. Please keep a valid ID proof and your contact details ready."
+      a: "Our team will tell you the exact documents when you enquire. Please keep a valid ID proof and your contact details ready.",
     },
     {
       q: "How do I apply for EMI?",
-      a: 'Call us at <a href="tel:+919751867879">+91 97518 67879</a> or <a href="contact.html">send an enquiry</a>. We will guide you through the process.'
-    }
+      a: 'Call us at <a href="tel:+919751867879">+91 97518 67879</a> or <a href="contact.html">send an enquiry</a>. We will guide you through the process.',
+    },
   ];
   // ==================================================================
 
@@ -66,7 +67,9 @@
 
     var items = faqs
       .map(function (f) {
-        return "<details><summary>" + f.q + "</summary><p>" + f.a + "</p></details>";
+        return (
+          "<details><summary>" + f.q + "</summary><p>" + f.a + "</p></details>"
+        );
       })
       .join("");
 
@@ -74,8 +77,12 @@
     section.className = "emi-faq";
     section.innerHTML =
       '<div class="emi-faq-inner">' +
-        '<div class="emi-faq-head"><h2>' + heading + "</h2><p>" + subheading + "</p></div>" +
-        items +
+      '<div class="emi-faq-head"><h2>' +
+      heading +
+      "</h2><p>" +
+      subheading +
+      "</p></div>" +
+      items +
       "</div>";
 
     target.parentNode.insertBefore(section, target);
@@ -106,12 +113,18 @@
     var phone = document.getElementById("enqPhone").value.trim();
     var altPhone = document.getElementById("enqAltPhone").value.trim();
     var notice = document.getElementById("enqNotice");
+    var typeEl = document.querySelector('input[name="enqType"]:checked');
+    var type = typeEl ? typeEl.value : "";
 
     function show(text, type) {
       notice.textContent = text;
       notice.className = "enquiry-notice " + type;
     }
 
+    if (!type) {
+      show("Please select Course or Internship.", "error");
+      return;
+    }
     if (!name || !email || !degree || !duration || !course || !phone) {
       show("Please fill in all required fields.", "error");
       return;
@@ -131,16 +144,35 @@
 
     var message =
       "Hello Rohil NextGen, I would like to book a Free Demo Class.\n\n" +
-      "Name: " + name + "\n" +
-      "Email: " + email + "\n" +
-      "Degree: " + degree + "\n" +
-      "Course: " + course + "\n" +
-      "Duration: " + duration + "\n" +
-      "Phone: " + phone + "\n" +
-      "Alternate Phone: " + (altPhone || "-");
+      "Name: " +
+      name +
+      "\n" +
+      "Interested In: " +
+      type +
+      "\n" +
+      "Email: " +
+      email +
+      "\n" +
+      "Degree: " +
+      degree +
+      "\n" +
+      "Course: " +
+      course +
+      "\n" +
+      "Duration: " +
+      duration +
+      "\n" +
+      "Phone: " +
+      phone +
+      "\n" +
+      "Alternate Phone: " +
+      (altPhone || "-");
 
     var url =
-      "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+      "https://wa.me/" +
+      WHATSAPP_NUMBER +
+      "?text=" +
+      encodeURIComponent(message);
 
     var win = window.open(url, "_blank");
     if (!win) {

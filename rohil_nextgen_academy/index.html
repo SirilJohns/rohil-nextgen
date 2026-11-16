@@ -1892,6 +1892,58 @@
   margin: 0;
 }
 
+/* Course / Internship choice */
+.enquiry-choice {
+  display: flex;
+  gap: 12px;
+}
+
+.enquiry-field .choice {
+  flex: 1;
+  display: block;
+  margin-bottom: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.enquiry-choice .choice input {
+  position: absolute;
+  opacity: 0;
+  width: auto;
+  height: 0;
+  padding: 0;
+  border: 0;
+}
+
+.enquiry-choice .choice span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 13px;
+  border: 2px solid #e3e3e3;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--dark-gray);
+  background: #fff;
+  transition: all 0.3s;
+}
+
+.enquiry-choice .choice:hover span {
+  border-color: var(--primary-red);
+}
+
+.enquiry-choice .choice input:checked + span {
+  background: var(--primary-red);
+  border-color: var(--primary-red);
+  color: #fff;
+}
+
+.enquiry-choice .choice input:focus-visible + span {
+  box-shadow: 0 0 0 3px rgba(212, 4, 4, 0.25);
+}
+
     </style>
     <!-- Meta Pixel Code -->
 <script>
@@ -2157,6 +2209,20 @@ src="https://www.facebook.com/tr?id=2068205667229556&ev=PageView&noscript=1"
           <input type="email" id="enqEmail" placeholder="Enter your email" required />
         </div>
       </div>
+
+      <div class="enquiry-field">
+  <label>Interested In</label>
+  <div class="enquiry-choice">
+    <label class="choice">
+      <input type="radio" name="enqType" value="Course" />
+      <span><i class="fas fa-graduation-cap"></i> Course</span>
+    </label>
+    <label class="choice">
+      <input type="radio" name="enqType" value="Internship" />
+      <span><i class="fas fa-briefcase"></i> Internship</span>
+    </label>
+  </div>
+</div>
 
       <div class="enquiry-row">
         <div class="enquiry-field">
